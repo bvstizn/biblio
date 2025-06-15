@@ -1,0 +1,7 @@
+com\mycompany\biblioduoc\Usuario.class
+com\mycompany\biblioduoc\BuscarLibro\BuscarLibro.class
+com\mycompany\biblioduoc\Biblioteca.class
+com\mycompany\biblioduoc\exceptions\LibroNoEncontradoException.class
+com\mycompany\biblioduoc\BiblioDuoc.class
+com\mycompany\biblioduoc\Libro.class
+com\mycompany\biblioduoc\exceptions\LibroYaPrestadoException.class

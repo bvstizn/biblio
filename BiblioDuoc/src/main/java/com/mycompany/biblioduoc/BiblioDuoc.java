@@ -5,7 +5,7 @@ import com.mycompany.biblioduoc.exceptions.LibroNoEncontradoException;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import com.mycompany.biblioduoc.BuscarLibro;
+import com.mycompany.biblioduoc.BuscarLibro.BuscarLibro;
 
 public class BiblioDuoc {
 
@@ -14,7 +14,7 @@ public class BiblioDuoc {
         Scanner scanner = new Scanner(System.in);
 
         boolean salir = false;
-        System.out.println("Carpeta de trabajo: " + System.getProperty("user.dir"));
+        
         while (!salir) {
             System.out.println("\n=== Menú Biblioteca Duoc ===");
             System.out.println("1. Listar libros");
@@ -34,7 +34,7 @@ public class BiblioDuoc {
             int opcion = 0;
             try {
                 opcion = scanner.nextInt();
-                scanner.nextLine(); // limpiar buffer
+                scanner.nextLine();
             } catch (InputMismatchException e) {
                 System.out.println("Error: Debes ingresar un número válido.");
                 scanner.nextLine();
@@ -54,11 +54,24 @@ public class BiblioDuoc {
                     System.out.print("Ingrese el nombre o autor del libro a buscar: ");
                     String consulta = scanner.nextLine();
                     try {
-                        BuscarLibro.buscarPorTituloOAutor(listaDeLibros, consulta);
+                        BuscarLibro.buscarPorTituloOAutor(biblioteca.getLibros(), consulta);
                     } catch (Exception e) {
                         System.out.println("Ocurrió un error al buscar el libro: " + e.getMessage());
                     }
+                    break;
                 case 4:
+                    System.out.println("Libros disponibles para prestar:");
+                    boolean hayDisponibles = false;
+                    for (Libro libro : biblioteca.getLibros()) {
+                        if (!libro.isPrestado()) {
+                            System.out.println(libro.getTitulo() + " - " + libro.getAutor());
+                            hayDisponibles = true;
+                        }
+                    }
+                    if (!hayDisponibles) {
+                        System.out.println("No hay libros disponibles para prestar.");
+                        break;
+                    }
                     System.out.print("Título del libro a prestar: ");
                     String tituloPrestar = scanner.nextLine();
                     try {
@@ -95,7 +108,9 @@ public class BiblioDuoc {
                     System.out.println("Usuario agregado.");
                     break;
                 case 8:
-                    System.out.print("Ruta del archivo CSV de libros: ");
+                    System.out.println("Archivos para cargar: libros.csv");
+                    System.out.println("Ingrese nombre del archivo: ");
+              
                     String archivoLibros = scanner.nextLine();
                     try {
                         biblioteca.cargarLibrosDesdeCSV(archivoLibros);
@@ -105,7 +120,8 @@ public class BiblioDuoc {
                     }
                     break;
                 case 9:
-                    System.out.print("Ruta del archivo CSV de usuarios: ");
+                    System.out.println("Archivos para cargar: usuarios.csv ");
+                    System.out.println("Ingrese el nombre del archivo: ");
                     String archivoUsuarios = scanner.nextLine();
                     try {
                         biblioteca.cargarUsuariosDesdeCSV(archivoUsuarios);

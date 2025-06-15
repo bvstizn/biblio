@@ -12,6 +12,10 @@ public class Biblioteca {
         libros = new ArrayList<>();
         usuarios = new HashMap<>();
     }
+    
+    public List<Libro> getLibros() {
+    return libros;
+}
 
     // Agrega un libro
     public void agregarLibro(Libro libro) {

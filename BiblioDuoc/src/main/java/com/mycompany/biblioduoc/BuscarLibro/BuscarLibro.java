@@ -1,5 +1,6 @@
-package com.mycompany.biblioduoc;
+package com.mycompany.biblioduoc.BuscarLibro;
 
+import com.mycompany.biblioduoc.Libro;
 import java.util.List;
 
 public class BuscarLibro {
