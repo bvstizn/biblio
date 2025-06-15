@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.biblioduoc;
 import com.mycompany.biblioduoc.exceptions.LibroYaPrestadoException;
 import com.mycompany.biblioduoc.exceptions.LibroNoEncontradoException;
@@ -24,7 +20,7 @@ public class Biblioteca {
 
     // Agrega un usuario
     public void agregarUsuario(Usuario usuario) {
-        usuarios.put(usuario.getId(), usuario);
+        usuarios.put(usuario.getRut(), usuario);
     }
 
     // Busca un libro por título
@@ -98,10 +94,14 @@ public class Biblioteca {
 
     // Muestra todos los libros
     public void mostrarLibros() {
-        for (Libro libro : libros) {
-            System.out.println(libro);
-        }
+    if (libros.isEmpty()) {
+        System.out.println("No hay libros registrados en la biblioteca.");
+        return;
     }
+    for (Libro libro : libros) {
+        System.out.println(libro);
+    }
+}
 
     // Muestra todos los usuarios
     public void mostrarUsuarios() {
