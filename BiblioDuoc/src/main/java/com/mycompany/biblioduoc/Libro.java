@@ -1,5 +1,8 @@
 package com.mycompany.biblioduoc;
 
+import com.mycompany.biblioduoc.exceptions.LibroYaPrestadoException;
+
+
 public class Libro {
     private String titulo;
     private String autor;
@@ -11,23 +14,29 @@ public class Libro {
         this.prestado = false;
     }
 
-    public String getTitulo() { return titulo; }
-    public String getAutor() { return autor; }
-    public boolean isPrestado() { return prestado; }
+    public String getTitulo() {
+        return titulo;
+    }
 
-    public void prestar() throws LibroYaPrestadoException {
-        if (prestado) {
-            throw new LibroYaPrestadoException("El libro ya está prestado: " + titulo);
-        }
-        prestado = true;
+    public String getAutor() {
+        return autor;
+    }
+
+    public boolean isPrestado() {
+        return prestado;
+    }
+
+    public void prestar() {
+        this.prestado = true;
     }
 
     public void devolver() {
-        prestado = false;
+        this.prestado = false;
     }
 
     @Override
     public String toString() {
-        return titulo + " - " + autor + (prestado ? " (Prestado)" : " (Disponible)");
+        return String.format("Título: %s, Autor: %s, Estado: %s", 
+            titulo, autor, prestado ? "Prestado" : "Disponible");
     }
 }

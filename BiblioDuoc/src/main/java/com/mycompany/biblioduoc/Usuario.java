@@ -5,16 +5,16 @@
 package com.mycompany.biblioduoc;
 
 public class Usuario {
-    private String rut;
+    private String id;
     private String nombre;
 
-    public Usuario(String rut, String nombre) {
-        this.rut = rut;
+    public Usuario(String id, String nombre) {
+        this.id = id;
         this.nombre = nombre;
     }
 
-    public String getRut() {
-        return rut;
+    public String getId() {
+        return id;
     }
 
     public String getNombre() {
@@ -23,6 +23,6 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return nombre + " (" + rut + ")";
+        return String.format("ID: %s, Nombre: %s", id, nombre);
     }
 }
